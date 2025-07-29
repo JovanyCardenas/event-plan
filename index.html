@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="files/style.css">
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+
+  <!-- Loading Spinner -->
+  <div id="loading-spinner" class="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
+    <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+  </div>
+
+  <header class="bg-white shadow p-6 mb-6">
+    <h1 id="event-name" class="text-3xl font-bold text-center">Loading...</h1>
+    <p id="event-date-location" class="text-center text-gray-500"></p>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4">
+    <section class="bg-white p-6 rounded-xl shadow mb-6">
+      <h2 class="text-2xl font-semibold mb-4">Overview</h2>
+      <p id="event-description" class="text-gray-600"></p>
+    </section>
+
+    <section class="bg-white p-6 rounded-xl shadow mb-6">
+      <h2 class="text-2xl font-semibold mb-4">Itinerary</h2>
+      <div id="itinerary" class="space-y-4"></div>
+    </section>
+
+    <section class="bg-white p-6 rounded-xl shadow mb-6">
+      <h2 class="text-2xl font-semibold mb-4">Speakers</h2>
+      <div id="speakers" class="grid md:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- Checklist Section -->
+    <section class="bg-white p-6 rounded-xl shadow mb-6">
+      <h2 class="text-2xl font-semibold mb-4">Checklist</h2>
+      <ul id="checklist" class="space-y-2">
+        <!-- Checklist items will be dynamically populated here -->
+      </ul>
+      <button id="add-checklist-item" onclick="addChecklistItem()" class="px-3 py-1 bg-blue-500 text-white rounded mt-2 hidden">Add Checklist Item</button>
+    </section>
+
+    <div class="fixed top-4 right-4 flex flex-col items-end space-y-2">
+      <div class="flex space-x-2">
+        <button onclick="enableCMS()" id="edit-button" class="px-4 py-2 bg-yellow-600 text-white rounded-lg hidden">Edit</button>
+        <button id="save-button" onclick="saveChanges()" class="px-4 py-2 bg-green-600 text-white rounded-lg hidden">Save Changes</button>
+        <button onclick="downloadPDF()" class="px-4 py-2 bg-green-600 text-white rounded-lg">Download PDF</button>
+      </div>
+
+      <div id="auth-controls" class="flex space-x-2 mt-2">
+        <input type="email" id="login-email" placeholder="Email" class="border p-2 rounded w-36">
+        <input type="password" id="login-password" placeholder="Password" class="border p-2 rounded w-32">
+        <button onclick="login()" class="bg-green-600 text-white px-3 py-1 rounded">Login</button>
+        <button onclick="logout()" id="logout-button" class="bg-red-600 text-white px-3 py-1 rounded hidden">Logout</button>
+      </div>
+
+      <p id="auth-status" class="text-gray-600 text-sm"></p>
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBvuFo4-3SBAXqp-Z3924ZCl31HEf2QD_4",
+      authDomain: "event-planner-w.firebaseapp.com",
+      projectId: "event-planner-w",
+      storageBucket: "event-planner-w.firebasestorage.app",
+      messagingSenderId: "1040959241162",
+      appId: "1:1040959241162:web:7fd6618a23a3ed6a242d33",
+      measurementId: "G-CSSZET4FMK"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    if (await isSupported()) {
+      getAnalytics(app);
+    }
+
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    window.db = db;
+    window.auth = auth;
+  </script>
+
+  <script type="module" src="files/scripts.js"></script>
+</body>
+</html>

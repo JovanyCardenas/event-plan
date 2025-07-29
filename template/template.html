@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-6 mb-6">
+    <h1 class="text-3xl font-bold text-center">Event Planner</h1>
+    <p class="text-center text-gray-500">Reusable template for multiple events</p>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4">
+
+    <!-- Event Overview -->
+    <section class="bg-white p-6 rounded-xl shadow mb-6">
+      <h2 class="text-2xl font-semibold mb-4">Event Overview</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <p><span class="font-semibold">Event Name:</span> <span id="event-name">Community Service Day</span></p>
+          <p><span class="font-semibold">Date:</span> <span id="event-date">August 15, 2025</span></p>
+          <p><span class="font-semibold">Location:</span> <span id="event-location">Allan Hancock College</span></p>
+        </div>
+        <div>
+          <p><span class="font-semibold">Description:</span></p>
+          <p id="event-description" class="text-gray-600">A day focused on service projects benefiting our local community, including cleanup, food drives, and more.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Itinerary -->
+    <section class="bg-white p-6 rounded-xl shadow mb-6">
+      <h2 class="text-2xl font-semibold mb-4">Event Itinerary</h2>
+      <div class="space-y-4" id="itinerary">
+        <div class="flex items-start space-x-4">
+          <div class="w-24 text-sm font-medium text-gray-500">8:00 AM</div>
+          <div>
+            <h3 class="font-semibold">Check-In & Breakfast</h3>
+            <p class="text-gray-600 text-sm">Registration and light breakfast provided.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="w-24 text-sm font-medium text-gray-500">9:00 AM</div>
+          <div>
+            <h3 class="font-semibold">Opening Ceremony</h3>
+            <p class="text-gray-600 text-sm">Welcome remarks and event overview.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Speakers -->
+    <section class="bg-white p-6 rounded-xl shadow mb-6">
+      <h2 class="text-2xl font-semibold mb-4">Speakers & Hosts</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <img src="https://via.placeholder.com/100" alt="Speaker" class="w-24 h-24 rounded-full mx-auto mb-2">
+          <h3 class="font-semibold">Jovany Cardenas</h3>
+          <p class="text-gray-500 text-sm">Event Coordinator</p>
+        </div>
+        <div class="text-center">
+          <img src="https://via.placeholder.com/100" alt="Speaker" class="w-24 h-24 rounded-full mx-auto mb-2">
+          <h3 class="font-semibold">Luis Cardenas</h3>
+          <p class="text-gray-500 text-sm">Logistics Manager</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="bg-white p-6 rounded-xl shadow">
+      <h2 class="text-2xl font-semibold mb-4">Event Checklist</h2>
+      <ul class="space-y-2 text-gray-700">
+        <li><input type="checkbox" class="mr-2"> Confirm venue booking</li>
+        <li><input type="checkbox" class="mr-2"> Arrange catering</li>
+        <li><input type="checkbox" class="mr-2"> Send invitations</li>
+        <li><input type="checkbox" class="mr-2"> Prepare signage and materials</li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>
