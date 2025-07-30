@@ -6,7 +6,7 @@
   <title>Event Planner</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <link rel="stylesheet" href="files/style.css">
+  <link rel="stylesheet" href="files/styles.css">
 </head>
 <body class="bg-gray-50 font-sans text-gray-900">
 
@@ -15,22 +15,27 @@
     <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
   </div>
 
+  <!-- Header -->
   <header class="bg-white shadow p-6 mb-6">
     <h1 id="event-name" class="text-3xl font-bold text-center">Loading...</h1>
     <p id="event-date-location" class="text-center text-gray-500"></p>
   </header>
 
+  <!-- Main Content -->
   <main class="max-w-5xl mx-auto px-4">
+      <!-- Overview -->
     <section class="bg-white p-6 rounded-xl shadow mb-6">
       <h2 class="text-2xl font-semibold mb-4">Overview</h2>
       <p id="event-description" class="text-gray-600"></p>
     </section>
 
+    <!-- Itinerary -->
     <section class="bg-white p-6 rounded-xl shadow mb-6">
       <h2 class="text-2xl font-semibold mb-4">Itinerary</h2>
       <div id="itinerary" class="space-y-4"></div>
     </section>
 
+    <!-- Speakers -->
     <section class="bg-white p-6 rounded-xl shadow mb-6">
       <h2 class="text-2xl font-semibold mb-4">Speakers</h2>
       <div id="speakers" class="grid md:grid-cols-3 gap-6"></div>
@@ -45,6 +50,7 @@
       <button id="add-checklist-item" onclick="addChecklistItem()" class="px-3 py-1 bg-blue-500 text-white rounded mt-2 hidden">Add Checklist Item</button>
     </section>
 
+    <!-- CMS & Auth Controls -->
     <div class="fixed top-4 right-4 flex flex-col items-end space-y-2">
       <div class="flex space-x-2">
         <button onclick="enableCMS()" id="edit-button" class="px-4 py-2 bg-yellow-600 text-white rounded-lg hidden">Edit</button>
@@ -52,6 +58,7 @@
         <button onclick="downloadPDF()" class="px-4 py-2 bg-green-600 text-white rounded-lg">Download PDF</button>
       </div>
 
+      <!-- Login / Logout -->
       <div id="auth-controls" class="flex space-x-2 mt-2">
         <input type="email" id="login-email" placeholder="Email" class="border p-2 rounded w-36">
         <input type="password" id="login-password" placeholder="Password" class="border p-2 rounded w-32">
@@ -63,6 +70,7 @@
     </div>
   </main>
 
+  <!-- Firebase Initialization -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
@@ -84,11 +92,8 @@
       getAnalytics(app);
     }
 
-    const db = getFirestore(app);
-    const auth = getAuth(app);
-
-    window.db = db;
-    window.auth = auth;
+    window.db = getFirestore(app);
+    window.auth = getAuth(app);
   </script>
 
   <script type="module" src="files/scripts.js"></script>

@@ -1,16 +1,20 @@
 const EVENT_ID = "service-day"; // Change depending on what event you want to display
 
 // ================= INITIALIZE =================
-document.addEventListener("DOMContentLoaded", () => {
-  loadEvent();
-});
-
-// Get Firebase references from window (initialized in HTML)
 const db = window.db;
 const auth = window.auth;
 
+if (!db || !auth) {
+  console.error("Firebase not initialized: db or auth is missing.");
+}
+
+// Firebase imports
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadEvent();
+});
 
 // ================= LOGIN =================
 async function login() {
